@@ -1,0 +1,11 @@
+name: WiZARD-BUNGEE
+version: 1.0
+author: MCmodding4K
+main: com.wizardhax.bungee.WizardCore.WizardCore
+commands:
+     rankreload:
+          description: Reloads Permissions from DataBank
+          usage: /rankreload
+     lobby:
+          description: To return to the lobby.
+          usage: /lobby,l,hub
