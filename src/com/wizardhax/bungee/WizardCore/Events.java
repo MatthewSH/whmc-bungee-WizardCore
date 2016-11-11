@@ -1,7 +1,8 @@
 package com.wizardhax.bungee.WizardCore;
 
-import com.wizardhax.bungee.WizardCore.PermissionEntry.Group;
-import com.wizardhax.bungee.WizardCore.PermissionEntry.Permission;
+import java.util.List;
+
+import com.wizardhax.bungee.WizardCore.misc.Permission;
 
 import net.md_5.bungee.api.AbstractReconnectHandler;
 import net.md_5.bungee.api.ProxyServer;
@@ -50,16 +51,20 @@ public class Events implements Listener {
 		if (!(event.getSender() instanceof ProxiedPlayer)) {
 			return;
 		}
-		
+
 		event.setHasPermission(false);
-		if(!WizardCore.getPlugin().userPermissions.containsKey(((ProxiedPlayer) event.getSender()).getUniqueId().toString().replace("-", "")))
+
+		if (!WizardCore.getPlugin().userMap
+				.containsKey(((ProxiedPlayer) event.getSender()).getUniqueId().toString().replace("-", "")))
 			return;
+
 		String perm = event.getPermission();
-		PermissionEntry userperms = WizardCore.getPlugin().userPermissions
+
+		List<Integer> userperms = WizardCore.getPlugin().userMap
 				.get(((ProxiedPlayer) event.getSender()).getUniqueId().toString().replace("-", ""));
-		for (Group group : userperms.getGroups()) {
-			for (Permission permission : group.getPermissions()) {
-				//System.out.println(permission.isPositive() ? "+" : "-" + " " + permission.getPerm());
+		for (Integer group : userperms) {
+			for (Permission permission : WizardCore.getPlugin().groupMap.get(group).getPermissions()) {
+				System.out.println((permission.isPositive() ? "+" : "-" + " ") + group + " " + permission.getPerm());
 				if (permission.getPerm().equalsIgnoreCase(perm))
 					event.setHasPermission(permission.isPositive());
 			}

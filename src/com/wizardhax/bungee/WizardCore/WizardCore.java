@@ -2,10 +2,12 @@ package com.wizardhax.bungee.WizardCore;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.List;
 import java.util.Map;
 
 import com.wizardhax.bungee.WizardCore.command.CommandLobby;
 import com.wizardhax.bungee.WizardCore.command.RankReload;
+import com.wizardhax.bungee.WizardCore.misc.Group;
 
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -55,5 +57,10 @@ public class WizardCore extends Plugin {
 		return plugin;
 	}
 
-	public Map<String, PermissionEntry> userPermissions;
+	// UUID permissions
+	public Map<String, List<Integer>> userMap;
+
+	// Group-id Group
+	public Map<Integer, Group> groupMap;
+
 }
