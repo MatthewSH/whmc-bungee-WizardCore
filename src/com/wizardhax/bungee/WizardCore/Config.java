@@ -17,7 +17,7 @@ public class Config {
 	public String url = "jdbc:mysql://127.0.0.1:3306/default";
 	public String username = "root";
 	public String password = "root";
-	
+
 	public void loadConfig() {
 		try {
 			if (!plugin.getDataFolder().exists()) {
@@ -28,12 +28,12 @@ public class Config {
 				file.createNewFile();
 			}
 			Configuration configFile = ConfigurationProvider.getProvider(YamlConfiguration.class).load(file);
-			
+
 			String driver = "driver";
 			String url = "url";
 			String username = "username";
 			String password = "password";
-			
+
 			if (configFile.contains(driver))
 				this.driver = configFile.getString(driver);
 			configFile.set(driver, this.driver);
@@ -49,7 +49,7 @@ public class Config {
 			if (configFile.contains(password))
 				this.password = configFile.getString(password);
 			configFile.set(password, this.password);
-			
+
 			ConfigurationProvider.getProvider(YamlConfiguration.class).save(configFile, file);
 
 		} catch (Exception e) {

@@ -14,7 +14,7 @@ public class PermissionEntry {
 	public List<Group> getGroups() {
 		return groups;
 	}
-	
+
 	public static class Group {
 		public Group(int id) {
 			this.id = id;
@@ -31,7 +31,7 @@ public class PermissionEntry {
 		public List<Permission> getPermissions() {
 			return permissions;
 		}
-		
+
 		@Override
 		public String toString() {
 			return "{" + id + ":" + getPermissions() + "}";
@@ -43,10 +43,10 @@ public class PermissionEntry {
 			this.permission = permission;
 			this.positive = positive;
 		}
-		
+
 		@Override
 		public String toString() {
-			return positive?"+":"-" + permission;
+			return (positive ? "+" : "-") + permission;
 		}
 
 		private String permission;
@@ -62,5 +62,4 @@ public class PermissionEntry {
 
 	}
 
-	
 }

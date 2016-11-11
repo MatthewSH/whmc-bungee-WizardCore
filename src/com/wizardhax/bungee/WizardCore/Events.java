@@ -47,18 +47,21 @@ public class Events implements Listener {
 
 	@EventHandler
 	public void onPermissionCheckEvent(PermissionCheckEvent event) {
-		System.out.println("PermissionCheckEvent1" + event.hasPermission());
-		if(!(event.getSender() instanceof ProxiedPlayer)) {
+		if (!(event.getSender() instanceof ProxiedPlayer)) {
 			return;
 		}
+		
 		event.setHasPermission(false);
+		if(!WizardCore.getPlugin().userPermissions.containsKey(((ProxiedPlayer) event.getSender()).getUniqueId().toString().replace("-", "")))
+			return;
 		String perm = event.getPermission();
-		PermissionEntry userperms = WizardCore.getPlugin().userPermissions.get(((ProxiedPlayer)event.getSender()).getUniqueId().toString().replace("-", ""));
-		for(Group group:userperms.getGroups()) {
-			for(Permission permission:group.getPermissions()) {
-				System.out.println(permission.isPositive()?"+":"-" + " " + permission.getPerm());
-				if(permission.getPerm().equalsIgnoreCase(perm))
-						event.setHasPermission(permission.isPositive());
+		PermissionEntry userperms = WizardCore.getPlugin().userPermissions
+				.get(((ProxiedPlayer) event.getSender()).getUniqueId().toString().replace("-", ""));
+		for (Group group : userperms.getGroups()) {
+			for (Permission permission : group.getPermissions()) {
+				//System.out.println(permission.isPositive() ? "+" : "-" + " " + permission.getPerm());
+				if (permission.getPerm().equalsIgnoreCase(perm))
+					event.setHasPermission(permission.isPositive());
 			}
 		}
 		System.out.println("PermissionCheckEvent2" + event.hasPermission());

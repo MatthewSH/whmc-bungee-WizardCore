@@ -37,7 +37,7 @@ public class WizardCore extends Plugin {
 			BungeeCord.getInstance().getPluginManager().registerCommand(this, new CommandLobby());
 			BungeeCord.getInstance().getPluginManager().registerCommand(this, new RankReload());
 
-			MySQL.loadfromServer();
+			SQLLoader.loadfromServer();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
