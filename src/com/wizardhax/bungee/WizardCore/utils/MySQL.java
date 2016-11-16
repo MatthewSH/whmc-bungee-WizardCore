@@ -1,9 +1,11 @@
-package com.wizardhax.bungee.WizardCore;
+package com.wizardhax.bungee.WizardCore.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
+import com.wizardhax.bungee.WizardCore.WizardCore;
 
 public class MySQL {
 

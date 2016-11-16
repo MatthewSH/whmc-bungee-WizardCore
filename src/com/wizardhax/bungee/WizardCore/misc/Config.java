@@ -1,6 +1,8 @@
-package com.wizardhax.bungee.WizardCore;
+package com.wizardhax.bungee.WizardCore.misc;
 
 import java.io.File;
+
+import com.wizardhax.bungee.WizardCore.WizardCore;
 
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
@@ -17,6 +19,7 @@ public class Config {
 	public String url = "jdbc:mysql://127.0.0.1:3306/default";
 	public String username = "root";
 	public String password = "root";
+	public int lobby_delay = 5;
 
 	public void loadConfig() {
 		try {
@@ -33,6 +36,7 @@ public class Config {
 			String url = "url";
 			String username = "username";
 			String password = "password";
+			String lobby_delay = "lobby_delay";
 
 			if (configFile.contains(driver))
 				this.driver = configFile.getString(driver);
@@ -49,6 +53,10 @@ public class Config {
 			if (configFile.contains(password))
 				this.password = configFile.getString(password);
 			configFile.set(password, this.password);
+
+			if (configFile.contains(lobby_delay))
+				this.lobby_delay = configFile.getInt(lobby_delay);
+			configFile.set(lobby_delay, this.lobby_delay);
 
 			ConfigurationProvider.getProvider(YamlConfiguration.class).save(configFile, file);
 

@@ -1,4 +1,4 @@
-package com.wizardhax.bungee.WizardCore;
+package com.wizardhax.bungee.WizardCore.utils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

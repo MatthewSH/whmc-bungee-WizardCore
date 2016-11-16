@@ -1,4 +1,4 @@
-package com.wizardhax.bungee.WizardCore;
+package com.wizardhax.bungee.WizardCore.misc;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,8 +7,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import com.wizardhax.bungee.WizardCore.misc.Group;
-import com.wizardhax.bungee.WizardCore.misc.Permission;
+import com.wizardhax.bungee.WizardCore.WizardCore;
+import com.wizardhax.bungee.WizardCore.utils.MySQL;
 
 public class SQLLoader {
 	public static void loadfromServer() {
@@ -28,7 +28,8 @@ public class SQLLoader {
 				int id = groups.getInt("id");
 				int priority = groups.getInt("priority");
 
-				// removed because it might be used to give perms to players without a group
+				// removed because it might be used to give perms to players
+				// without a group
 				// if (groups.getInt("is_group") == 1)
 				plugin.groupMap.put(id, new Group(priority));
 			}
@@ -55,7 +56,7 @@ public class SQLLoader {
 			while (inheritances.next()) {
 				int parent_id = inheritances.getInt("parent_id");
 				int child_id = inheritances.getInt("child_id");
-				
+
 				for (String uuid : plugin.userMap.keySet()) {
 					List<Integer> groupList = plugin.userMap.get(uuid);
 					// process collection

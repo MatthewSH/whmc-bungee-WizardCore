@@ -1,22 +1,20 @@
 package com.wizardhax.bungee.WizardCore;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.List;
 import java.util.Map;
 
 import com.wizardhax.bungee.WizardCore.command.CommandLobby;
 import com.wizardhax.bungee.WizardCore.command.RankReload;
+import com.wizardhax.bungee.WizardCore.events.Events;
+import com.wizardhax.bungee.WizardCore.misc.Config;
+import com.wizardhax.bungee.WizardCore.misc.FileManager;
 import com.wizardhax.bungee.WizardCore.misc.Group;
+import com.wizardhax.bungee.WizardCore.misc.SQLLoader;
 
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.plugin.Plugin;
 
 public class WizardCore extends Plugin {
-
-	private static WizardCore plugin;
-
-	public Config config;
 
 	@Override
 	public void onEnable() {
@@ -32,6 +30,8 @@ public class WizardCore extends Plugin {
 			config = new Config(this);
 			config.loadConfig();
 
+			fileManager = new FileManager(this);
+
 			// Registry
 			BungeeCord.getInstance().getPluginManager().registerListener(this, new Events());
 
@@ -45,12 +45,9 @@ public class WizardCore extends Plugin {
 		}
 	}
 
-	public static void setFinalStatic(Field field, Object newValue, Object other) throws Exception {
-		field.setAccessible(true);
-		Field modifiersField = Field.class.getDeclaredField("modifiers");
-		modifiersField.setAccessible(true);
-		modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-		field.set(other, newValue);
+	@Override
+	public void onDisable() {
+
 	}
 
 	public static WizardCore getPlugin() {
@@ -62,5 +59,11 @@ public class WizardCore extends Plugin {
 
 	// Group-id Group
 	public Map<Integer, Group> groupMap;
+
+	private static WizardCore plugin;
+
+	public Config config;
+
+	public FileManager fileManager;
 
 }

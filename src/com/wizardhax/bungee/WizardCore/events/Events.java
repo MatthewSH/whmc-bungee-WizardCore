@@ -1,7 +1,8 @@
-package com.wizardhax.bungee.WizardCore;
+package com.wizardhax.bungee.WizardCore.events;
 
 import java.util.List;
 
+import com.wizardhax.bungee.WizardCore.WizardCore;
 import com.wizardhax.bungee.WizardCore.misc.Permission;
 
 import net.md_5.bungee.api.AbstractReconnectHandler;
@@ -15,9 +16,6 @@ import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
 public class Events implements Listener {
-
-	// TODO: add ban/tempban+join/leave-message
-	// @EventHandlerpublic void on(LoginEvent event) {}
 
 	@EventHandler
 	public void onServerKickEvent(ServerKickEvent ev) {
