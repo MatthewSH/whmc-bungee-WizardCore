@@ -3,8 +3,10 @@ package com.wizardhax.bungee.WizardCore;
 import java.util.List;
 import java.util.Map;
 
+import com.wizardhax.bungee.WizardCore.command.Ban;
 import com.wizardhax.bungee.WizardCore.command.CommandLobby;
 import com.wizardhax.bungee.WizardCore.command.RankReload;
+import com.wizardhax.bungee.WizardCore.command.UnBan;
 import com.wizardhax.bungee.WizardCore.events.Events;
 import com.wizardhax.bungee.WizardCore.misc.Config;
 import com.wizardhax.bungee.WizardCore.misc.FileManager;
@@ -38,6 +40,8 @@ public class WizardCore extends Plugin {
 			// Commands
 			BungeeCord.getInstance().getPluginManager().registerCommand(this, new CommandLobby());
 			BungeeCord.getInstance().getPluginManager().registerCommand(this, new RankReload());
+			BungeeCord.getInstance().getPluginManager().registerCommand(this, new Ban());
+			BungeeCord.getInstance().getPluginManager().registerCommand(this, new UnBan());
 
 			SQLLoader.loadfromServer();
 		} catch (Exception e) {

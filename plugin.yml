@@ -9,3 +9,9 @@ commands:
      lobby:
           description: To return to the lobby.
           usage: /lobby,l,hub
+     ban:
+          description: Bans a player.
+          usage: /ban <player> [reason]
+     unban:
+          description: Unbans a player.
+          usage: /unban <player>
