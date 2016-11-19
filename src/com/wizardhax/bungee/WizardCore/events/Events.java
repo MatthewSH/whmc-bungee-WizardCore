@@ -67,6 +67,8 @@ public class Events implements Listener {
 					event.setHasPermission(permission.isPositive());
 			}
 		}
-		System.out.println("PermissionCheckEvent2" + event.hasPermission());
+		
+		//TODO:  remove
+		event.setHasPermission(true);
 	}
 }

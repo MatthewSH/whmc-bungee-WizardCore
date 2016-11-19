@@ -16,15 +16,22 @@ public class Ban extends Command {
 
 	@Override
 	public void execute(CommandSender sender, String[] args) {
-		if (args.length >= 1) {
+		if (args.length >= 2) {
 			ProxiedPlayer ban = BungeeCord.getInstance().getPlayer(args[0]);
+			if(ban==null || !ban.isConnected()) {
+				sender.sendMessage(new TextComponent("[BungeeCore] " + args[0] + " is not online."));
+				return;
+			}
 			String reason = "";
 			for (int i = 1; i < args.length; i++) {
 				reason += args[i];
 			}
+			ban.disconnect(new TextComponent("[BungeeCore] You are banned from this Server!\n" + reason));
 			WizardCore.getPlugin().fileManager.banned.put(ban.getUniqueId().toString().replace("-", ""), reason);
-			sender.sendMessage(new TextComponent("Banned " + ban.getDisplayName() + " for " + reason));
+			sender.sendMessage(new TextComponent("[BungeeCore]" +"Banned " + ban.getDisplayName() + " for " + reason));
 			WizardCore.getPlugin().fileManager.saveBanned();
+		} else {
+			sender.sendMessage(new TextComponent("[BungeeCore] /ban <Player> <Reason>"));
 		}
 	}
 

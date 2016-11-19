@@ -10,6 +10,8 @@ import java.util.List;
 import com.wizardhax.bungee.WizardCore.WizardCore;
 import com.wizardhax.bungee.WizardCore.utils.MySQL;
 
+import net.md_5.bungee.BungeeCord;
+
 public class SQLLoader {
 	public static void loadfromServer() {
 		WizardCore plugin = WizardCore.getPlugin();
@@ -88,6 +90,7 @@ public class SQLLoader {
 
 		} catch (SQLException e) {
 			System.err.println("Failed to read from MySQL");
+			BungeeCord.getInstance().stop("Failed to read from MySQL, permissions might be missing");
 			e.printStackTrace();
 		}
 

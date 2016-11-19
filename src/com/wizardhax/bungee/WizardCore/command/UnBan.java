@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.wizardhax.bungee.WizardCore.WizardCore;
 
+import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.plugin.Command;
@@ -20,23 +21,21 @@ public class UnBan extends Command {
 		if (args.length == 1) {
 			String uuid = "";
 			try {
-				URL url = new URL("https://mcapi.ca/uuid/player/" + args[0]);
+				URL url = new URL("https://api.mojang.com/users/profiles/minecraft/" + args[0]);
 				Scanner scanner = new Scanner(url.openStream());
-				String line;
-				while (!(line = scanner.nextLine()).contains("\"uuid\": \"")) {
-				}
-				uuid = line.split("\"uuid\": \"")[1].replace("-", "").replace("\",", "");
+				String line = scanner.nextLine();
+				uuid = line.split("\"")[3];
 				scanner.close();
 			} catch (Exception e) {
-				sender.sendMessage(new TextComponent("Player " + args[0] + " not found."));
+				sender.sendMessage(new TextComponent("[BungeeCore] + Player " + args[0] + " not found."));
 				return;
 			}
 
 			if (WizardCore.getPlugin().fileManager.banned.containsKey(uuid)) {
 				WizardCore.getPlugin().fileManager.banned.remove(uuid);
-				sender.sendMessage(new TextComponent("Unbanned " + args[0] + " [" + uuid + "]"));
+				sender.sendMessage(new TextComponent("[BungeeCore] Unbanned " + args[0] + " [" + uuid + "]"));
 			} else {
-				sender.sendMessage(new TextComponent("Player " + args[0] + " not banned. [" + uuid + "]"));
+				sender.sendMessage(new TextComponent("[BungeeCore] Player " + args[0] + " not banned. [" + uuid + "]"));
 			}
 			WizardCore.getPlugin().fileManager.saveBanned();
 		}
@@ -44,7 +43,7 @@ public class UnBan extends Command {
 
 	@Override
 	public String getPermission() {
-		return "wizardbungee.command.ban";
+		return "wizardbungee.command.unban";
 	}
 
 }

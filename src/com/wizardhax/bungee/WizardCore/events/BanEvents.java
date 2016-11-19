@@ -2,15 +2,17 @@ package com.wizardhax.bungee.WizardCore.events;
 
 import com.wizardhax.bungee.WizardCore.WizardCore;
 
-import net.md_5.bungee.api.event.PreLoginEvent;
+import net.md_5.bungee.api.event.LoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
 public class BanEvents implements Listener {
 
 	@EventHandler
-	public void onServerKickEvent(PreLoginEvent event) {
+	public void onLogin(LoginEvent event) {
 		String uuid = event.getConnection().getUniqueId().toString().replace("-", "");
+		System.out.println(uuid);
+		System.out.println(WizardCore.getPlugin().fileManager.banned);
 		if (WizardCore.getPlugin().fileManager.banned.containsKey(uuid)) {
 			event.setCancelled(true);
 			event.setCancelReason(

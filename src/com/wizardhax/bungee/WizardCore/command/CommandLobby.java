@@ -31,10 +31,4 @@ public class CommandLobby extends Command {
 	public String[] getAliases() {
 		return new String[] { "hub", "l" };
 	}
-
-	@Override
-	public String getPermission() {
-		return "wizardbungee.command.lobby";
-	}
-
 }
