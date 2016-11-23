@@ -15,3 +15,6 @@ commands:
      unban:
           description: Unbans a player.
           usage: /unban <player>
+     kick:
+          description: Kicks a Player
+          usage: /kick <player> [reason]

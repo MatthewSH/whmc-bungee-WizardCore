@@ -1,6 +1,8 @@
 package com.wizardhax.bungee.WizardCore.misc;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.wizardhax.bungee.WizardCore.WizardCore;
 
@@ -20,6 +22,9 @@ public class Config {
 	public String username = "root";
 	public String password = "root";
 	public int lobby_delay = 5;
+	public List<String> cmd_blackList = new ArrayList<>();
+	public String wizard_core = "§r[§4WizardCore§r]";
+	public boolean debug = false;
 
 	public void loadConfig() {
 		try {
@@ -37,6 +42,9 @@ public class Config {
 			String username = "username";
 			String password = "password";
 			String lobby_delay = "lobby_delay";
+			String cmd_blackList = "cmd_blackList";
+			String wizard_core = "wizard_core";
+			String debug = "debug";
 
 			if (configFile.contains(driver))
 				this.driver = configFile.getString(driver);
@@ -57,6 +65,18 @@ public class Config {
 			if (configFile.contains(lobby_delay))
 				this.lobby_delay = configFile.getInt(lobby_delay);
 			configFile.set(lobby_delay, this.lobby_delay);
+			
+			if (configFile.contains(cmd_blackList))
+				this.cmd_blackList = configFile.getStringList(cmd_blackList);
+			configFile.set(cmd_blackList, this.cmd_blackList);
+			
+			if (configFile.contains(wizard_core))
+				this.wizard_core = configFile.getString(wizard_core);
+			configFile.set(wizard_core, this.wizard_core);
+			
+			if (configFile.contains(debug))
+				this.debug = configFile.getBoolean(debug);
+			configFile.set(debug, this.debug);
 
 			ConfigurationProvider.getProvider(YamlConfiguration.class).save(configFile, file);
 

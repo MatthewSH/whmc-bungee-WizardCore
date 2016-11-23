@@ -5,6 +5,7 @@ import java.util.List;
 import com.wizardhax.bungee.WizardCore.WizardCore;
 import com.wizardhax.bungee.WizardCore.misc.Permission;
 
+import net.md_5.bungee.BungeeTitle;
 import net.md_5.bungee.api.AbstractReconnectHandler;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -39,8 +40,9 @@ public class Events implements Listener {
 			}
 			ev.setCancelled(true);
 			ev.setCancelServer(kickTo);
-
 			ev.getPlayer().sendMessage(new TextComponent("§4You have been connected to the lobby."));
+			ev.getPlayer().sendMessage(new TextComponent(ev.getKickReasonComponent()));
+			ev.getPlayer().sendTitle(new BungeeTitle().fadeIn(5).fadeOut(5).stay(40).subTitle(ev.getKickReasonComponent()));
 		}
 	}
 
@@ -62,13 +64,14 @@ public class Events implements Listener {
 				.get(((ProxiedPlayer) event.getSender()).getUniqueId().toString().replace("-", ""));
 		for (Integer group : userperms) {
 			for (Permission permission : WizardCore.getPlugin().groupMap.get(group).getPermissions()) {
-				System.out.println((permission.isPositive() ? "+" : "-" + " ") + group + " " + permission.getPerm());
+				//System.out.println((permission.isPositive() ? "+" : "-" + " ") + group + " " + permission.getPerm());
 				if (permission.getPerm().equalsIgnoreCase(perm))
 					event.setHasPermission(permission.isPositive());
 			}
 		}
 		
 		//TODO:  remove
-		event.setHasPermission(true);
+		if(WizardCore.getPlugin().config.debug)
+			event.setHasPermission(true);
 	}
 }

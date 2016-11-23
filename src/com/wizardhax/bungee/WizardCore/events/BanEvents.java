@@ -11,8 +11,6 @@ public class BanEvents implements Listener {
 	@EventHandler
 	public void onLogin(LoginEvent event) {
 		String uuid = event.getConnection().getUniqueId().toString().replace("-", "");
-		System.out.println(uuid);
-		System.out.println(WizardCore.getPlugin().fileManager.banned);
 		if (WizardCore.getPlugin().fileManager.banned.containsKey(uuid)) {
 			event.setCancelled(true);
 			event.setCancelReason(

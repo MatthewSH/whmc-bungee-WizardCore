@@ -24,7 +24,7 @@ public class CommandLobby extends Command {
 			p.connect(ProxyServer.getInstance().getServerInfo("lobby"));
 		}, WizardCore.getPlugin().config.lobby_delay, TimeUnit.SECONDS);
 		p.sendMessage(new TextComponent(
-				"You'll get teleportet in the lobby in " + WizardCore.getPlugin().config.lobby_delay + " Seconds."));
+				"You'll get teleported in the lobby in " + WizardCore.getPlugin().config.lobby_delay + " Seconds."));
 	}
 
 	@Override
