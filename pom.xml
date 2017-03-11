@@ -11,7 +11,7 @@
     <developers>
         <developer>
             <name>Matthew Hatcher</name>
-            <url>http://matthewh.in</url>
+            <url>http://matthewhatcher.com</url>
         </developer>
     </developers>
 
@@ -19,13 +19,14 @@
         <author>MatthewSH</author>
         <mainClass>com.wizardhax.bungee.wizardcore.WizardCore</mainClass>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <dependencies>[]</dependencies>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>net.md-5</groupId>
             <artifactId>bungeecord-api</artifactId>
-            <version>1.10-SNAPSHOT</version>
+            <version>1.11-SNAPSHOT</version>
             <type>jar</type>
             <scope>provided</scope>
         </dependency>
@@ -33,10 +34,24 @@
         <dependency>
             <groupId>net.md-5</groupId>
             <artifactId>bungeecord-api</artifactId>
-            <version>1.10-SNAPSHOT</version>
+            <version>1.11-SNAPSHOT</version>
             <type>javadoc</type>
             <scope>provided</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>net.md-5</groupId>
+    		<artifactId>bungeecord-proxy</artifactId>
+    		<version>1.11-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+		    <groupId>io.netty</groupId>
+		    <artifactId>netty-codec-haproxy</artifactId>
+		    <version>4.0.33.Final</version>
+		</dependency>
+
+        
     </dependencies>
 
 	<repositories>
@@ -83,6 +98,6 @@
     </build>
     <groupId>com.wizardhax.bungee</groupId>
     <artifactId>WizardCore</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.1</version>
     <description>The core Bungee plugin for WiZARDHAX</description>
 </project>
